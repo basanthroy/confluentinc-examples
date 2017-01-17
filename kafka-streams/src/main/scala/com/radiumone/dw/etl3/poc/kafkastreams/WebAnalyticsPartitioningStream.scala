@@ -16,7 +16,7 @@ object WebAnalyticsPartitioningStream {
 
     val streamingConfig = {
       val settings = new Properties()
-      settings.put(StreamsConfig.APPLICATION_ID_CONFIG, "web-analytics-partition-by-appid")
+      settings.put(StreamsConfig.APPLICATION_ID_CONFIG, "web-analytics-partition-by-first-char")
       settings.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
       settings.put(StreamsConfig.ZOOKEEPER_CONNECT_CONFIG, "localhost:2181")
       settings.put(StreamsConfig.KEY_SERDE_CLASS_CONFIG, Serdes.ByteArray.getClass.getName)
@@ -26,11 +26,12 @@ object WebAnalyticsPartitioningStream {
 
     val stringSerde: Serde[String] = Serdes.String()
 
-    val textLines: KStream[Array[Byte], String] = builder.stream("TextLinesTopic")
+    val textLines: KStream[Array[Byte], String] = builder.stream("AppIdKeyedTopic2")
 
     val uppercasedWithMapValues: KStream[Array[Byte], String] = textLines.mapValues(_.toUpperCase())
 
-    uppercasedWithMapValues.to("UppercasedTextR1")
+//    uppercasedWithMapValues.to("UppercasedTextR1")
+    uppercasedWithMapValues.to("PartitionByFirstChar2")
 
     val stream: KafkaStreams = new KafkaStreams(builder, streamingConfig)
     stream.start()
