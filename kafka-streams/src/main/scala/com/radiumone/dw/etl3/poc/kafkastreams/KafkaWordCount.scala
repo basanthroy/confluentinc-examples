@@ -144,6 +144,7 @@ object KafkaWordCountProducer {
 
         val v1 = fut.get()
         System.out.println("Producer v1=" + v1)
+        System.out.println("Producer v1.partition=" + v1.partition())
       }
 
       Thread.sleep(1000)
