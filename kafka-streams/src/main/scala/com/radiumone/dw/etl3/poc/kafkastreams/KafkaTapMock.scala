@@ -33,8 +33,8 @@ object KafkaTapMock {
 
         val sampleTrackingId = sampleTrackingIds(scala.util.Random.nextInt(sampleTrackingIds.size))
 
-//        val str = requestJsonTemplate format sampleTrackingId
-        val str =  sampleTrackingId
+        val str = requestJsonTemplate format sampleTrackingId
+//        val str =  sampleTrackingId
 
         System.out.println("Producer sampleTrackingId=" + sampleTrackingId
                          + ",\n     Producer topic=" + topic

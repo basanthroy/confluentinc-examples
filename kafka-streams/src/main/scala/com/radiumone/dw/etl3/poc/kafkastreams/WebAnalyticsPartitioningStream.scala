@@ -42,13 +42,14 @@ object WebAnalyticsPartitioningStream {
 
     val textLines: KStream[Array[Byte], String] = builder.stream(sourceTopic)
 
-    val uppercasedWithMapValues: KStream[Array[Byte], String] = textLines.mapValues(_.toUpperCase())
+//    val uppercasedWithMapValues: KStream[Array[Byte], String] = textLines.mapValues(_.toUpperCase())
 
 //    partitioner: StreamPartitioner[K, V]
 //    val partitioner = new StreamPartitioner[String, String]{}
     val appIdPartitioner = new AppIdPartitioner()
 
-    uppercasedWithMapValues.to(appIdPartitioner, destintationTopic)
+    textLines.to(appIdPartitioner, destintationTopic)
+//    uppercasedWithMapValues.to(appIdPartitioner, destintationTopic)
 //    uppercasedWithMapValues.to(appIdPartitioner, "PartitionByFirstChar3")
 
     val stream: KafkaStreams = new KafkaStreams(builder, streamingConfig)

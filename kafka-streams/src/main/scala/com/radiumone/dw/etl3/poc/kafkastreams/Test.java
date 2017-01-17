@@ -11,6 +11,7 @@ public class Test {
     public static void main(String[] args) {
 
         AppIdPartitioner appIdPartitioner = new AppIdPartitioner();
+//        WebAnalyticsJsonRecord waj = new WebAnalyticsJsonRecord("", "", "");
 
         Partitioner ni = null;
 
