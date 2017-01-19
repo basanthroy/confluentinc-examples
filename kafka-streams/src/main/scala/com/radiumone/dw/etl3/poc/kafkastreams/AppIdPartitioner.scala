@@ -45,6 +45,9 @@ class AppIdPartitioner extends StreamPartitioner[Array[Byte], String] {
 
       System.out.println("trackingId = " + trackingId)
       val partitionId = trackingId.asInstanceOf[String].charAt(0).getNumericValue
+
+        // TODO : Change to partitionId based on appId. Will need to lookup MySQL for that
+
 //      System.out.println(this.getClass.getName + ", value not null, value=" + value
 //        + ",\n key = " + key
 //        + ",\n partitions for this topic = " + numPartitions
