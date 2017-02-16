@@ -24,6 +24,4 @@ case class WebAnalyticsJsonRecord (
 //     this("Default value from auxiliary constructor", "", "")
 //   }
 
-
-
 }
